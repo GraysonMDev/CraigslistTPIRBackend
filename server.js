@@ -25,6 +25,8 @@ app.get('/', function (req, res, next){
     res.json("hello")
 })
 
-server.listen(3001, () => {
+const PORT = process.env.PORT || 3001
+
+server.listen(PORT, () => {
   console.log('listening on *:3001');
 }); 
