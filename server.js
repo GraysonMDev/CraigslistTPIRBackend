@@ -6,6 +6,9 @@ const http = require('http');
 
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+
+const users = ["Server"]
+
 const io = require("socket.io")(server, 
     { 
     cors: {    
@@ -15,9 +18,10 @@ const io = require("socket.io")(server,
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on("sendMessage", message => {
+  socket.on("login", message => {
       console.log(message)
-      socket.emit("serverMessage", "hello from the other side")
+      users.push(message)
+      socket.emit("serverMessage", users)
   })
 });
 
